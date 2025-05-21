@@ -3,7 +3,18 @@ import sqlite3
 # Connect to the SQLite database
 conn = sqlite3.connect('car_lease.db')
 cursor = conn.cursor()
-
+# makes the db
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS cars (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    make TEXT NOT NULL,
+    model TEXT NOT NULL,
+    base_price REAL NOT NULL,
+    lease_term INTEGER NOT NULL,
+    interest_rate REAL NOT NULL,
+    mileage INTEGER NOT NULL
+)
+''')
 # New cars data to be added (make, model, base_price, lease_term, interest_rate, mileage, residual_percentage)
 new_cars = [
     ('Toyota', 'Corolla', 20000, 36, 0.035, 12000, 0.55),
